@@ -44,6 +44,7 @@ html {
    font-style: normal;
    font-weight: normal;
    color: var(--main-text);
+   background-color: var(--wrapper-bg);
 }
 
 html,
@@ -296,31 +297,28 @@ input {
    margin: 0 auto;
    padding: var(--p-top) 20px;
    max-width: 1440px;
-   background-color: #c3d13e;
 }
 
 .app__body {
    min-height: calc(100vh - (var(--p-top) * 2));
    width: 100%;
    display: flex;
-   background-color: #ccc;
 }
 
 .content {
    flex: 1 0 auto;
    width: 100%;
    display: flex;
-   background-color: #b3d4fc;
+   font-size: 30px;
 }
 
 .content__container {
-   flex: 1 0 auto;
+   flex: 1 1 auto;
    overflow: hidden;
    margin: 0 auto;
    max-width: 800px;
    display: flex;
    flex-direction: row;
-   background-color: aquamarine;
 }
 
 
@@ -329,21 +327,80 @@ input {
 .card {
    flex: 1 0 auto;
    width: 100%;
-   /* height: 200px; */
-   /* background-color: black; */
+   opacity: 1;
 }
 
+.content_animation .card {
+   transition: transform 500ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.content_add .card {
+   transform: translateX(-100%);
+}
+
+.card._visible {
+   opacity: 1;
+}
+
+.card._invisible {
+   opacity: 0;
+}
 
 /* == main == */
 
 #main {
-   background-color: red;
+   background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* == add == */
 
 #add {
-   background-color: black;
+   background-color: red;
+}
+
+h1 {
+   cursor: pointer;
+}
+
+.link {
+   width: 100%;
+   display: flex;
+}
+
+
+/* ============ MEDIA ============ */
+
+
+@media (max-width: 1024px) {
+   :root {
+      --pattern-size: 124px 124px;
+      --p-top: 30px;
+   }
+}
+
+@media (max-width: 768px) {
+   :root {
+      --pattern-size: 76px 76px;
+      --p-top: 20px;
+   }
+}
+
+@media (max-width: 425px) {
+   :root {
+      --pattern-size: 42px 42px;
+   }
+}
+
+@media (max-width: 375px) {
+   :root {
+      --pattern-size: 37px 37px;
+   }
+}
+
+@media (max-width: 320px) {
+   :root {
+      --pattern-size: 32px 32px;
+   }
 }
 
 

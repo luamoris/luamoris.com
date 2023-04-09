@@ -1,60 +1,178 @@
-// const idBtnBack = "btnBack";
-// const btnBack = document.getElementById(idBtnBack);
+// add
+
+const contentId = "content";
+const contentContainerCs = "content__container";
+const mainCardId = "main";
+const addCardId = "add";
+const addBodyCs = "card__body";
+
+const contentElm = document.getElementById(contentId);
+const contentContainerEml = contentElm.querySelector("." + contentContainerCs);
+const mainCardElm = document.getElementById(mainCardId);
+const addCardElm = document.getElementById(addCardId);
+const addCardBodyElm = addCardElm.querySelector("." + addBodyCs);
+
+const csLink = "link";
+const idBtnClose = "btnClose";
+
+const linkElms = mainCardElm.querySelectorAll("." + csLink);
+const btnCloseElm = addCardElm.querySelector("#" + idBtnClose);
 
 
-// function addLink(event) {
-//    const link = "/" + event.target.dataset.link;
-//    window.history.replaceState("object or string", "Title", "");
-//    window.history.pushState("object or string", "Title", link);
-//    console.log(window.history);
-// }
+// Class Names
+const csContentAdd = "content_add";
+const csContentAnimation = "content_animation";
+const csNoEvent = "no-event";
+const csVisible = "_visible";
+const csInvisible = "_invisible";
 
-// function clearPath() {
-// window.location.href = window.location.href.replace(/#promptbase/g, "");
-// window.location.href += "#main";
-// }
-
-
-// window.addEventListener('pushstate', () => {
-//    console.log("You're visiting a cool feature!");
-// });
-
-// function clearPath() {
-// const url = window.location.toString();
-// window.location.hash = "";
-// url = url.replace(/#/, "google");
-// window.location = window.location.toString() + "#string";
-// }
-
-// function add
+// Values
+const swapMs = 500;
+let activePage = "";
 
 
-document.addEventListener("click", e => {
-   if (e.target.classList.contains("link")) {
-      route(e);
+// Hash Controller
+function hashController() {
+   const set = hash => {
+      window.location.hash = hash;
+   };
+   const del = () => {
+      history.pushState({}, "", "/");
+   };
+
+   return {
+      set,
+      del,
    }
-   e.preventDefault();
-});
+}
 
-const route = (e) => {
-   const link = e.target.dataset.href;
-   window.history.pushState({}, "", link);
-   handleLocation();
+const hash = hashController();
+
+// Content
+
+const blockTitles = {
+   promptbase: "promptbase",
+   pinterest: "pinterest",
+   opensea: "opensea",
+}
+
+function getHtmlPromptbase() {
+   return "<h1>Promptbase</h1>";
+}
+
+function updateHtmlPromptbase() { }
+
+function getHtmlPinterest() {
+   return "<h1>Pinterest</h1>";
+}
+
+function updateHtmlPinterest() { }
+
+function getHtmlOpensea() {
+   return "<h1>Opensea</h1>";
+}
+
+function updateHtmlOpensea() { }
+
+
+const getBlock = title => {
+   switch (title) {
+      case blockTitles.promptbase:
+         return getHtmlPromptbase();
+      case blockTitles.pinterest:
+         return getHtmlPinterest();
+      case blockTitles.opensea:
+         return getHtmlOpensea();
+      default:
+         break;
+   }
 };
 
-const routers = {
-   "/": "main.html",
-   "/promptbase": "promptbase.html",
-   "/pinterest": "pinterest.html",
-   "/opensea": "opensea.html"
+const updateBlock = title => {
+   switch (title) {
+      case blockTitles.promptbase:
+         return updateHtmlPromptbase();
+      case blockTitles.pinterest:
+         return updateHtmlPinterest();
+      case blockTitles.opensea:
+         return updateHtmlOpensea();
+      default:
+         break;
+   }
 };
 
-const handleLocation = async () => {
-   const path = window.location.pathname;
-   const html = await fetch(routers[path]).then(data => data.text());
-   document.getElementById("main").innerHTML = html;
-};
 
-window.onpopstate = handleLocation();
-window.route = route;
-handleLocation();
+//  Function
+function addNoEvent() {
+   contentContainerEml.classList.add(csNoEvent);
+   setTimeout(() => {
+      contentContainerEml.classList.remove(csNoEvent);
+   }, swapMs);
+}
+
+function applyAddCard(isTransition) {
+   if (isTransition) {
+      if (!contentElm.classList.contains(csContentAnimation)) {
+         contentElm.classList.add(csContentAnimation);
+      }
+      addNoEvent();
+   } else if (!isTransition) {
+      if (contentElm.classList.contains(csContentAnimation)) {
+         contentElm.classList.remove(csContentAnimation);
+      }
+   }
+   contentElm.classList.add(csContentAdd);
+   mainCardElm.classList.add(csInvisible);
+   addCardElm.classList.remove(csInvisible);
+}
+
+function closeAddCard() {
+   if (!contentElm.classList.contains(csContentAnimation)) {
+      contentElm.classList.add(csContentAnimation);
+   }
+   addNoEvent();
+   contentElm.classList.remove(csContentAdd);
+   mainCardElm.classList.remove(csInvisible);
+   addCardElm.classList.add(csInvisible);
+}
+
+function setCardContent(html) {
+   addCardBodyElm.innerHTML = html;
+}
+
+function delCardContent() {
+   addCardBodyElm.innerHTML = "";
+}
+
+
+function setAdd(href, isTransition) {
+   hash.set(href);
+   if (activePage !== href) {
+      const html = getBlock(href);
+      delCardContent();
+      setCardContent(html);
+   }
+   activePage = href;
+   applyAddCard(isTransition);
+   updateBlock(href);
+}
+
+function delAdd() {
+   hash.del();
+   closeAddCard();
+}
+
+// Start
+function start() {
+   const hash = window.location.hash;
+   if (hash) {
+      const href = hash.slice(1, hash.length);
+      setAdd(href, false);
+   }
+}
+
+start();
+
+// Extions
+linkElms.forEach(link => link.addEventListener("click", e => setAdd(e.target.dataset.href, true)));
+btnCloseElm.addEventListener("click", delAdd);

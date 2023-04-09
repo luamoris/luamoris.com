@@ -1,0 +1,350 @@
+/* ============ FONTS ============ */
+
+/* Rubik One */
+
+@font-face {
+   font-family: "Rubik One";
+   src: url("../fonts/rubikone/RubikOne-Regular.eot");
+   src: local("Rubik One Regular"), local("RubikOne-Regular"),
+      url("../fonts/rubikone/RubikOne-Regular.eot?#iefix") format("embedded-opentype"),
+      url("../fonts/rubikone/RubikOne-Regular.woff2") format("woff2"),
+      url("../fonts/rubikone/RubikOne-Regular.woff") format("woff"),
+      url("../fonts/rubikone/RubikOne-Regular.ttf") format("truetype");
+   font-weight: normal;
+   font-style: normal;
+}
+
+/* ============ COLORS ============ */
+
+
+:root {
+   --font-family: "Rubik One";
+   --selection: rgba(0, 0, 0, 0.2);
+
+   --wrapper-bg: rgba(25, 26, 27, 1);
+   --pattern-img: url("../src/svg/bg-pattern.svg");
+   --pattern-size: 120px 120px;
+
+   --p-top: 50px;
+
+   --main-text: rgba(255, 255, 255, 0.6);
+}
+
+/* ============ NORMALIZE ============ */
+
+* {
+   box-sizing: border-box;
+   scroll-behavior: smooth;
+   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html {
+   font-family: var(--font-family);
+   font-size: 14px;
+   font-style: normal;
+   font-weight: normal;
+   color: var(--main-text);
+}
+
+html,
+body,
+div,
+span,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+address,
+big,
+code,
+del,
+dfn,
+em,
+img,
+q,
+s,
+samp,
+small,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+main,
+nav,
+output,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+   vertical-align: baseline;
+   margin: 0;
+   border: 0;
+   padding: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+   display: block;
+   margin: 0;
+}
+
+ol,
+ul {
+   list-style: none;
+}
+
+table {
+   border-collapse: collapse;
+   border-spacing: 0;
+}
+
+body {
+   line-height: 1.15;
+}
+
+h1 {
+   margin: 0.67em 0;
+   font-size: 2em;
+}
+
+a {
+   background-color: transparent;
+}
+
+b,
+strong {
+   font-weight: 500;
+}
+
+small {
+   font-size: 80%;
+}
+
+figure {
+   margin: 1em 40px;
+}
+
+img {
+   border-style: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+   cursor: pointer;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+   border: 0;
+   padding: 0;
+}
+
+textarea {
+   overflow: auto;
+}
+
+[hidden] {
+   display: none;
+}
+
+[clear] {
+   clear: both;
+}
+
+::selection {
+   text-shadow: none;
+   background: #b3d4fc;
+}
+
+/* Box Model */
+
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+}
+
+/* A better looking default horizontal rule */
+
+hr {
+   display: block;
+   margin: 1em 0;
+   border: 0;
+   border-top: 1px solid #ccc;
+   padding: 0;
+   height: 1px;
+}
+
+button,
+input {
+   outline: none;
+}
+
+/* ============ HELP ============ */
+
+.no-copy {
+   -ms-user-select: none;
+   -moz-user-select: none;
+   -webkit-user-select: none;
+   user-select: none;
+}
+
+.no-event {
+   cursor: none;
+   user-select: none;
+   pointer-events: none;
+   -ms-user-select: none;
+   -moz-user-select: none;
+   -webkit-user-select: none;
+}
+
+.no-copyimg {
+   pointer-events: none;
+}
+
+/* ============ HELP ============ */
+
+::selection {
+   background-color: var(--selection);
+}
+
+/* ============ STLE ============ */
+
+
+/* == shell == */
+
+#wrapper {
+   position: relative;
+   min-width: 320px;
+   min-height: 100%;
+   background: var(--wrapper-bg);
+}
+
+#wrapper::after {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   background: var(--pattern-img) repeat;
+   background-size: var(--pattern-size);
+   opacity: 0.1;
+}
+
+.app {
+   z-index: 2;
+   position: relative;
+   min-height: 100vh;
+   width: 100%;
+}
+
+.app__container {
+   margin: 0 auto;
+   padding: var(--p-top) 20px;
+   max-width: 1440px;
+   background-color: #c3d13e;
+}
+
+.app__body {
+   min-height: calc(100vh - (var(--p-top) * 2));
+   width: 100%;
+   display: flex;
+   background-color: #ccc;
+}
+
+.content {
+   flex: 1 0 auto;
+   width: 100%;
+   display: flex;
+   background-color: #b3d4fc;
+}
+
+.content__container {
+   flex: 1 0 auto;
+   overflow: hidden;
+   margin: 0 auto;
+   max-width: 800px;
+   display: flex;
+   flex-direction: row;
+   background-color: aquamarine;
+}
+
+
+/* == card == */
+
+.card {
+   flex: 1 0 auto;
+   width: 100%;
+   /* height: 200px; */
+   /* background-color: black; */
+}
+
+
+/* == main == */
+
+#main {
+   background-color: red;
+}
+
+/* == add == */
+
+#add {
+   background-color: black;
+}
+
+
+/* ============ END :) ============ */

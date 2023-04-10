@@ -998,6 +998,7 @@ input {
       /* social */
       --link-size: calc(30px - 6px);
       --link-container: calc(18px - 5px);
+      --social-margin: 0 0 calc(20px + 14px);
 
       /* main */
       --main-margin: calc(10px - 10px) 0;

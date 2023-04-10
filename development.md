@@ -3,6 +3,10 @@
 - ленивая загрузка (шаблон сайта с непрогрузкой)
 
 
+- написать политику кнфиденсальности (отдельная страница)
+- создать поддомен 
+
+
 ключевые слова:
 en: LUAMORIS, IOSIF ISACHKO, digital creator, digital creator Iosif Isachko, digital creator luamoris, programmer, programmer Iosif Isachko, programmer luamoris, prompt engineer, prompt engineer Iosif Isachko, prompt engineer luamoris, portfolio, branding, frontend developer, portfolio Iosif Isachko, branding Iosif Isachko, frontend developer Iosif Isachko, portfolio luamoris, branding luamoris, frontend developer luamoris,
 ru: ЛУАМОРИС, ИОСИФ ИСАЧКО, подсказка, подсказки, искусственный интеллект,

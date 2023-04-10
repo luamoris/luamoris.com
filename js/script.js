@@ -176,3 +176,22 @@ start();
 // Extions
 linkElms.forEach(link => link.addEventListener("click", e => setAdd(e.target.dataset.href, true)));
 btnCloseElm.addEventListener("click", delAdd);
+
+
+// SHARE
+const logoId = "logo";
+const logoEml = document.getElementById(logoId);
+
+const shareUrl = window.location.href;
+const shareTitle = "I am combine my passion for art, programming, and artificial intelligence to create original ideas that bring beauty to the world 🚀\n";
+
+logoEml.addEventListener('click', () => {
+   if (navigator.share) {
+      navigator.share({
+         title: shareTitle,
+         url: shareUrl,
+      }).catch(console.error);
+   } else {
+      alert('Sorry!\nThis function is not available on your device.');
+   }
+});

@@ -354,7 +354,7 @@ input {
 /* == add == */
 
 #add {
-   background-color: red;
+   background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* ============ BODY ============ */
@@ -558,7 +558,21 @@ input {
    --link-bg: rgba(255, 255, 255, 0.05);
    --link-size: 30px;
    --link-container: 18px;
-   --icon-bg: rgba(255, 255, 255, 0.6);
+   --social-icon-bg: rgba(255, 255, 255, 0.5);
+
+   --mail: rgba(234, 67, 53, 1);
+   --twitter: rgba(85, 172, 238, 1);
+   --instagram: rgba(225, 48, 108, 1);
+   --tiktok: rgba(255, 0, 80, 1);
+   --behance: rgba(5, 62, 255, 1);
+   --linkedin: rgba(0, 119, 181, 1);
+
+   --mail-bg: rgba(244, 160, 153, 0.4);
+   --twitter-bg: rgba(169, 213, 246, 0.4);
+   --instagram-bg: rgba(239, 151, 181, 0.4);
+   --tiktok-bg: rgba(255, 127, 167, 0.4);
+   --behance-bg: rgba(129, 158, 255, 0.4);
+   --linkedin-bg: rgba(128, 187, 218, 0.4);
 }
 
 .social {
@@ -605,20 +619,48 @@ input {
 }
 
 .social__container svg path {
-   fill: var(--icon-bg);
+   fill: var(--social-icon-bg);
+}
+
+.social__item._mail .social__link {
+   background-color: var(--mail-bg);
+}
+
+.social__item._twitter .social__link {
+   background-color: var(--twitter-bg);
+}
+
+.social__item._instagram .social__link {
+   background-color: var(--instagram-bg);
+}
+
+.social__item._tiktok .social__link {
+   background-color: var(--tiktok-bg);
+}
+
+.social__item._behance .social__link {
+   background-color: var(--behance-bg);
+}
+
+.social__item._linkedin .social__link {
+   background-color: var(--linkedin-bg);
 }
 
 /* ============ MAIN ============ */
 
 :root {
    --block-item-bg: rgba(244, 224, 192, 0.1);
+   --block-item-bg-hover-main: rgba(249, 209, 197, .15);
+   --block-item-bg-hover-link: rgba(198, 223, 245, .1);
    --icon-bg: rgba(255, 255, 255, 0.6);
 
    --icon-arrow-bg: rgba(237, 58, 124, 0.1);
-   --icon-arrow-body: rgba(237, 58, 124, 1);
+   --icon-arrow-body: rgba(237, 58, 124, 0.5);
+   --icon-arrow-body-hover: rgba(237, 58, 124, 0.8);
 
    --icon-link-bg: rgba(23, 119, 220, 0.1);
-   --icon-link-body: rgba(23, 119, 220, 1);
+   --icon-link-body: rgba(23, 119, 220, 0.5);
+   --icon-link-body-hover: rgba(23, 119, 220, 0.8);
 
    --main-margin: 10px 0;
    --block-item-margin: 0 0 10px 0;
@@ -666,12 +708,14 @@ input {
 }
 
 .block__item {
+   position: relative;
    margin: var(--block-item-margin);
    width: 100%;
    height: var(--block-h);
 }
 
 .block__link {
+   overflow: hidden;
    position: relative;
    width: 100%;
    height: 100%;
@@ -681,6 +725,10 @@ input {
    text-decoration: none;
    border-radius: 100px;
    background-color: var(--block-item-bg);
+}
+
+.block__list-link .block__link {
+   background-color: var(--block-item-bg-hover-link);
 }
 
 .block__box {
@@ -764,6 +812,124 @@ input {
    text-transform: uppercase;
    color: var(--subtitle-text);
 }
+
+
+/* ============ ANIMATION ============ */
+
+@media (min-width: 768px) {
+
+   /* logo */
+   .logo {
+      cursor: pointer;
+   }
+
+   .logo .eye-left,
+   .logo .eye-right {
+      transition: all 200ms ease-out;
+   }
+
+   .logo:hover .eye-left,
+   .logo:hover .eye-right {
+      fill: var(--logo-first-fill);
+      fill-opacity: 1;
+   }
+
+   /* socail */
+   .social__link {
+      transition: all 200ms ease-in-out;
+   }
+
+   .social__link:hover {
+      transform: translateY(-5px);
+   }
+
+   .social__link svg path {
+      transition: all 200ms ease-in-out;
+   }
+
+   .social__item._mail .social__link,
+   .social__item._twitter .social__link,
+   .social__item._instagram .social__link,
+   .social__item._tiktok .social__link,
+   .social__item._behance .social__link,
+   .social__item._linkedin .social__link {
+      background-color: var(--link-bg);
+   }
+
+   .social__item:hover._mail .social__link {
+      background-color: var(--mail-bg);
+   }
+
+   .social__item:hover._twitter .social__link {
+      background-color: var(--twitter-bg);
+   }
+
+   .social__item:hover._instagram .social__link {
+      background-color: var(--instagram-bg);
+   }
+
+   .social__item:hover._tiktok .social__link {
+      background-color: var(--tiktok-bg);
+   }
+
+   .social__item:hover._behance .social__link {
+      background-color: var(--behance-bg);
+   }
+
+   .social__item:hover._linkedin .social__link {
+      background-color: var(--linkedin-bg);
+   }
+
+   /* main */
+
+   .block__link {
+      transition: background 200ms ease-in-out, transform 200ms ease-in-out;
+   }
+
+   .block__link:hover {
+      transform: translateX(6px);
+   }
+
+   .block__list-main .block__link:hover {
+      background-color: var(--block-item-bg-hover-main);
+   }
+
+   .block__list-link .block__link {
+      background-color: var(--block-item-bg);
+   }
+
+   .block__list-link .block__link:hover {
+      background-color: var(--block-item-bg-hover-link);
+   }
+
+   .block__box._animation {
+      transition: transform 300ms ease-out, opacity 300ms ease-out;
+   }
+
+   .block__link .block__box._animation {
+      opacity: 0;
+      transform: translateX(-30%);
+   }
+
+   .block__link:hover .block__box._animation {
+      opacity: 1;
+      transform: translateX(0);
+   }
+
+   .block__container svg.icon-arrow .icon-arrow_body,
+   .block__container svg.icon-link .icon-link_body {
+      transition: all 200ms ease-in-out;
+   }
+
+   .block__link:hover .block__container svg.icon-arrow .icon-arrow_body {
+      fill: var(--icon-arrow-body-hover);
+   }
+
+   .block__link:hover .block__container svg.icon-link .icon-link_body {
+      fill: var(--icon-link-body-hover);
+   }
+}
+
 
 /* ============ MEDIA ============ */
 
